@@ -1,0 +1,30 @@
+.wrapper {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50px;
+  border: 1px red solid;
+}
+
+.display {
+  color: black;
+  padding: 0;
+  margin: 0;
+  background-color: grey;
+
+  padding: 0 1rem;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 3rem;
+}
+
+.button {
+  padding: 0.5rem 0;
+  width: 3rem;
+  font-size: 1.2rem;
+}
+
+.button.double {
+  padding: 0.5rem 0;
+  width: 6rem;
+}
