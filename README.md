@@ -1,11 +1,12 @@
 # A simple React calculator demonstration
 
 This is a simple application that is built with as few outside libraries as possible in order to
-demonstrate an understanding of core React concepts including:
+demonstrate an understanding of core concepts including:
 
 - Hooks
 - Props
 - State
+- CSS Variables
 
 It was built with create-react-app and the following libraries were added for the noted reasons:
 
