@@ -1,5 +1,4 @@
 .wrapper {
-  background-color: white;
   display: flex;
   flex-direction: column;
 }
@@ -9,6 +8,8 @@
   padding: 0;
   margin: 0;
   background-color: grey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 
   padding: 0 1rem;
   display: flex;
@@ -21,10 +22,22 @@ button {
   width: 3rem;
   font-size: 1.2rem;
 
-  border: 1px solid white;
+  border: 1px solid black;
+}
+
+button.operation {
+  background-color: orange;
 }
 
 button.double {
   padding: 0.5rem 0;
   width: 6rem;
+}
+
+button.bottom-right {
+  border-bottom-right-radius: 5px;
+}
+
+button.bottom-left {
+  border-bottom-left-radius: 5px;
 }
