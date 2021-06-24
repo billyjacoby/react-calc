@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Calculator.css";
+import Button from "./Button";
 
 const Calculator = () => {
   const [screen, setScreen] = useState(0);
@@ -11,8 +12,8 @@ const Calculator = () => {
 
   const setScreenFunction = (value) => {
     /* Disabling ES lint rule here due to clearing all state */
-    // eslint-disable-next-line
     if (value === "clear")
+      // eslint-disable-next-line
       return setScreen(0), setPrevValue(undefined), setStoredOp();
     if (screen === 0) {
       if (typeof value === "number") {
@@ -43,99 +44,73 @@ const Calculator = () => {
         <span>{screen}</span>
       </div>
       <div className="button-row">
-        <button
-          className="button function"
+        <Button
+          type="function"
           onClick={() => setScreenFunction("clear")}
-        >
-          AC
-        </button>
-        <button className="button function">+/-</button>
-        <button className="button function">%</button>
-        <button
-          className="button operation"
+          label="AC"
+        />
+        <Button type="function" label="+/-" />
+        <Button type="function" label="%" />
+        <Button
+          type="operation"
           onClick={() =>
             startOperation((prevValue, value) => prevValue / value)
           }
-        >
-          ÷
-        </button>
+          label="÷"
+        />
       </div>
       <div className="button-row">
-        <button className="button number" onClick={() => setScreenFunction(7)}>
-          7
-        </button>
-        <button className="button number" onClick={() => setScreenFunction(8)}>
-          8
-        </button>
-        <button className="button number" onClick={() => setScreenFunction(9)}>
-          9
-        </button>
-        <button
-          className="button operation"
+        <Button type="number" onClick={() => setScreenFunction(7)} label="7" />
+        <Button type="number" onClick={() => setScreenFunction(8)} label="8" />
+        <Button type="number" onClick={() => setScreenFunction(9)} label="9" />
+        <Button
+          type="operation"
           onClick={() =>
             startOperation((prevValue, value) => prevValue * value)
           }
-        >
-          ×
-        </button>
+          label="×"
+        />
       </div>
       <div className="button-row">
-        <button className="button number" onClick={() => setScreenFunction(4)}>
-          4
-        </button>
-        <button className="button number" onClick={() => setScreenFunction(5)}>
-          5
-        </button>
-        <button className="button number" onClick={() => setScreenFunction(6)}>
-          6
-        </button>
-        <button
-          className="button operation"
+        <Button type="number" onClick={() => setScreenFunction(4)} label="4" />
+        <Button type="number" onClick={() => setScreenFunction(5)} label="5" />
+        <Button type="number" onClick={() => setScreenFunction(6)} label="6" />
+        <Button
+          type="operation"
           onClick={() =>
             startOperation((prevValue, value) => prevValue - value)
           }
-        >
-          -
-        </button>
+          label="-"
+        />
       </div>
       <div className="button-row">
-        <button className="button number" onClick={() => setScreenFunction(1)}>
-          1
-        </button>
-        <button className="button number" onClick={() => setScreenFunction(2)}>
-          2
-        </button>
-        <button className="button number" onClick={() => setScreenFunction(3)}>
-          3
-        </button>
-        <button
-          className="button"
+        <Button type="number" onClick={() => setScreenFunction(1)} label="1" />
+        <Button type="number" onClick={() => setScreenFunction(2)} label="2" />
+        <Button type="number" onClick={() => setScreenFunction(3)} label="3" />
+        <Button
+          type="operation"
           onClick={() =>
             startOperation((prevValue, value) => prevValue + value)
           }
-        >
-          +
-        </button>
+          label="+"
+        />
       </div>
       <div className="button-row">
-        <button
-          className="button number double"
+        <Button
+          type="number double"
           onClick={() => setScreenFunction(0)}
-        >
-          0
-        </button>
-        <button
-          className="button number"
+          label="0"
+        />
+        <Button
+          type="number"
           onClick={() => setScreenFunction(".")}
-        >
-          .
-        </button>
-        <button
-          className="button operation"
+          label="."
+        />
+        <Button
+          type="equals"
           onClick={() => startOperation("equals")}
-        >
-          =
-        </button>
+          label="="
+        />
       </div>
     </div>
   );
