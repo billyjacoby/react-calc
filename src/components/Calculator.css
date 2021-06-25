@@ -1,4 +1,5 @@
-:root {
+.wrapper {
+  /* All custom properties are placed here so that the calcultor component can change them*/
   /* MacOS Color Scheme */
   --numberColor: rgb(91, 92, 94);
   --numberColorActive: rgb(159, 160, 160);
@@ -22,9 +23,7 @@
   --normalBorder: 1px solid black;
   --borderRadius: 10px;
   --outerBorder: 1px solid white;
-}
 
-.wrapper {
   display: flex;
   flex-direction: column;
   border-left: var(--outerBorder);
@@ -76,6 +75,10 @@ button:last-child {
 
 button:active {
   background-color: var(--numberColorActive);
+}
+
+button.active {
+  border: 3px solid black !important;
 }
 
 .clicked {

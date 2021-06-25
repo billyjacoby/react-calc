@@ -6,7 +6,7 @@ demonstrate an understanding of core concepts including:
 - Hooks
 - Props
 - State
-- CSS Variables
+- CSS Custom Properties
 
 It was built with create-react-app and the following libraries were added for the noted reasons:
 
@@ -14,12 +14,11 @@ It was built with create-react-app and the following libraries were added for th
 
 ### Include all basic functions of a simple calculator:
 
-- addition, subtraction, division, multiplication
-- clear screen
-- clear input (single clear click)
-
-### Include a history - to be stored in localStorage
-
-### Add the option for color themes?
-
-### Work on mobile and in browser
+- ✅ addition, subtraction, division, multiplication
+- ✅ clear screen
+- ✅ clear input (single clear click)
+- ⏹ equals repeats operation
+- ⏹ display shows previous value instead of 0
+- ⏹ add a history (maybe just an array?)
+- ⏹ option to change themes
+- ⏹ tested on mobile
