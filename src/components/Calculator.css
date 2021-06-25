@@ -1,43 +1,114 @@
+:root {
+  /* MacOS Color Scheme */
+  --numberColor: rgb(91, 92, 94);
+  --numberColorActive: rgb(159, 160, 160);
+  --operatorColor: rgb(255, 158, 11);
+  --operatorColorActive: rgb(203, 125, 8);
+  --functionColor: rgb(58, 59, 62);
+  --displayColor: rgb(40, 40, 39);
+  --fontColor: rgb(231, 231, 230);
+
+  /* Size Variables */
+  --buttonPadding: 0.5rem 0;
+  --buttonHeight: 4rem;
+  --buttonWidth: calc(1.1 * var(--buttonHeight));
+  --buttonFontSize: 1.2rem;
+
+  --displayHeight: var(--buttonHeight);
+  --displayFontSize: var(--buttonHeight);
+  --displayPadding: calc(var(--buttonHeight) * 0.33);
+
+  /* Border Variables */
+  --normalBorder: 1px solid black;
+  --borderRadius: 10px;
+  --outerBorder: 1px solid white;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
+  border-left: var(--outerBorder);
+  border-top-left-radius: var(--borderRadius);
+  border-bottom-left-radius: var(--borderRadius);
+}
+
+.wrapper:before {
+  content: "";
+  height: 1.25rem;
+  background-color: var(--displayColor);
+  border-right: var(--outerBorder);
+  border-top: var(--outerBorder);
+  border-top-right-radius: var(--borderRadius);
+  border-top-left-radius: var(--borderRadius);
 }
 
 .display {
-  color: black;
   padding: 0;
   margin: 0;
-  background-color: grey;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-
-  padding: 0 1rem;
+  font-weight: 200;
   display: flex;
   justify-content: flex-end;
-  font-size: 3rem;
+
+  font-size: var(--displayFontSize);
+  padding: 0 var(--displayPadding);
+  background-color: var(--displayColor);
+  border-right: var(--outerBorder);
+  border-bottom: var(--normalBorder);
 }
 
 button {
-  padding: 0.5rem 0;
-  width: 3rem;
-  font-size: 1.2rem;
+  border-top: 0;
+  border-left: 0;
 
-  border: 1px solid black;
+  background-color: var(--numberColor);
+  padding: var(--buttonPadding);
+  width: var(--buttonWidth);
+  height: var(--buttonHeight);
+  font-size: var(--buttonFontSize);
+  border-bottom: var(--normalBorder);
+  border-right: var(--normalBorder);
+  color: var(--fontColor);
 }
 
-button.operation {
-  background-color: orange;
+button:last-child {
+  border-right: var(--outerBorder);
+}
+
+button:active {
+  background-color: var(--numberColorActive);
+}
+
+.clicked {
+  border: 2px solid black;
+}
+
+.operation {
+  background-color: var(--operatorColor);
+}
+
+.operation:active {
+  background-color: var(--operatorColorActive);
+}
+
+.function {
+  background-color: var(--functionColor);
 }
 
 button.double {
-  padding: 0.5rem 0;
-  width: 6rem;
+  padding: var(--buttonPadding);
+  width: calc(2 * var(--buttonWidth));
 }
 
 button.bottom-right {
-  border-bottom-right-radius: 5px;
+  border-bottom-right-radius: var(--borderRadius);
 }
 
 button.bottom-left {
-  border-bottom-left-radius: 5px;
+  border-bottom-left-radius: var(--borderRadius);
+}
+
+.button-row:last-child {
+  border-bottom: var(--outerBorder);
+  border-bottom-right-radius: var(--borderRadius);
+  border-bottom-left-radius: var(--borderRadius);
 }
