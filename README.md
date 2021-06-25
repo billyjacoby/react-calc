@@ -10,6 +10,9 @@ demonstrate an understanding of core concepts including:
 
 It was built with create-react-app and the following libraries were added for the noted reasons:
 
+- gh-pages
+  To enable the demo of the app
+
 ## Goals of the project are:
 
 ### Include all basic functions of a simple calculator:
