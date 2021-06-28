@@ -3,12 +3,20 @@ import "./Calculator.css";
 import Button from "./Button";
 
 const Calculator = () => {
+  //* Value currently displayed on screen
   const [curValue, setCurValue] = useState(0);
+  //* What state the clear button should be: AC or C
   const [clearState, setClearState] = useState("AC");
-  const [prevValue, setPrevValue] = useState();
+  //* Hold the previous value in order to perform operations using it
+  const [prevValueState, setPrevValueState] = useState();
+  //* Stores the operation intended to be performed
   const [storedOp, setStoredOp] = useState();
+  //* Stores operation name, just for CSS styling purposes
   const [activeOp, setActiveOp] = useState();
+  //* Stores a value in order to perform same operations on subsequent equals button presses
+  const [storedValue, setStoredValue] = useState();
 
+  //! VARIABLES THAT AFFECT CSS:
   const [buttonHeight, setButtonHeight] = useState("4rem");
 
   const setCurValueFunction = (value) => {
@@ -30,19 +38,21 @@ const Calculator = () => {
   const clearValue = () => {
     if (clearState === "AC") {
       setCurValue(0);
-      setPrevValue(undefined);
+      setPrevValueState(undefined);
       setActiveOp();
       setStoredOp();
     }
     if (clearState === "C") {
       setCurValue(0);
+      setStoredValue();
       setClearState("AC");
     }
   };
 
   const startOperation = (operation, opType) => {
+    setStoredValue();
     setActiveOp(opType);
-    setPrevValue(parseFloat(curValue));
+    setPrevValueState(parseFloat(curValue));
     setStoredOp(() => operation);
     setCurValue(0);
   };
@@ -59,10 +69,13 @@ const Calculator = () => {
   };
 
   const equalPressed = () => {
-    // TODO: Figure out how to only perform the last op on subsequent equals button presses
-    if (typeof storedOp === "function") {
-      setCurValue(storedOp(prevValue, curValue));
-      setPrevValue(curValue);
+    if (storedValue) {
+      setCurValue(storedOp(curValue, storedValue));
+    }
+    if (typeof storedOp === "function" && !storedValue) {
+      setCurValue(storedOp(prevValueState, curValue));
+      setStoredValue(curValue);
+      setPrevValueState(curValue);
       setActiveOp();
     }
   };

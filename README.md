@@ -20,8 +20,8 @@ It was built with create-react-app and the following libraries were added for th
 - ✅ addition, subtraction, division, multiplication
 - ✅ clear screen
 - ✅ clear input (single clear click)
-- ⏹ equals repeats operation
+- ✅ equals repeats operation
+- ✅ tested on mobile
+- ⏹ make the maximum display the viewport width
 - ⏹ display shows previous value instead of 0
-- ⏹ add a history (maybe just an array?)
 - ⏹ option to change themes
-- ⏹ tested on mobile
