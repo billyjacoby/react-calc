@@ -15,13 +15,11 @@ It was built with create-react-app and the following libraries were added for th
 
 ## Goals of the project are:
 
-### Include all basic functions of a simple calculator:
-
 - ✅ addition, subtraction, division, multiplication
 - ✅ clear screen
 - ✅ clear input (single clear click)
 - ✅ equals repeats operation
 - ✅ tested on mobile
-- ⏹ make the maximum display the viewport width
+- ✅ make the maximum display the viewport width
 - ⏹ display shows previous value instead of 0
 - ⏹ option to change themes
