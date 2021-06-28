@@ -11,13 +11,13 @@
 
   /* Size Variables */
   --buttonPadding: 0.5rem 0;
-  --buttonHeight: 4rem;
-  --buttonWidth: calc(1.1 * var(--buttonHeight));
+  --buttonWidth: 5vw;
+  --buttonHeight: calc(1.1 * var(--buttonWidth));
   --buttonFontSize: 1.2rem;
 
-  --displayHeight: var(--buttonHeight);
-  --displayFontSize: var(--buttonHeight);
-  --displayPadding: calc(var(--buttonHeight) * 0.33);
+  --displayHeight: var(--buttonWidth);
+  --displayFontSize: var(--buttonWidth);
+  --displayPadding: calc(var(--buttonWidth) * 0.33);
 
   /* Border Variables */
   --normalBorder: 1px solid black;

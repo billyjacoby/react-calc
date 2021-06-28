@@ -22,6 +22,6 @@ It was built with create-react-app and the following libraries were added for th
 - ✅ clear input (single clear click)
 - ✅ equals repeats operation
 - ✅ tested on mobile
-- ⏹ make the maximum display the viewport width
+- ✅ make the maximum display the viewport width
 - ⏹ display shows previous value instead of 0
 - ⏹ option to change themes

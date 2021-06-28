@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Calculator.css";
 import Button from "./Button";
 
+import useWindowSize from "../utils/useWindowSize";
+
 const Calculator = () => {
   //* Value currently displayed on screen
   const [curValue, setCurValue] = useState(0);
@@ -17,7 +19,11 @@ const Calculator = () => {
   const [storedValue, setStoredValue] = useState();
 
   //! VARIABLES THAT AFFECT CSS:
-  const [buttonHeight, setButtonHeight] = useState("4rem");
+  const [buttonWidth, setButtonWidth] = useState("10vw");
+  // TODO: use this to set the max size of the buttons - 100vw / 4 to rem
+  const { width: windowWidth, height: windowHeight } = useWindowSize();
+
+  console.log(windowWidth);
 
   const setCurValueFunction = (value) => {
     if (curValue === 0) {
@@ -63,9 +69,9 @@ const Calculator = () => {
 
   const onSliderChange = (e) => {
     console.log(e.target.value);
-    const newHeight = e.target.value + "rem";
+    const newWidth = e.target.value + "vw";
 
-    setButtonHeight(newHeight);
+    setButtonWidth(newWidth);
   };
 
   const equalPressed = () => {
@@ -86,14 +92,14 @@ const Calculator = () => {
         <br />
         <input
           type="range"
-          min="2"
-          max="10"
-          defaultValue="4"
+          min="10"
+          max="24"
+          defaultValue="10"
           onChange={(e) => onSliderChange(e)}
         />
       </div>
 
-      <div className="wrapper" style={{ "--buttonHeight": buttonHeight }}>
+      <div className="wrapper" style={{ "--buttonWidth": buttonWidth }}>
         <div className="display">
           <span>{curValue}</span>
         </div>
