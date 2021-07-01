@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import "./Calculator.css";
 import Button from "./Button";
+import "./Calculator.css";
 
-import useWindowSize from "../utils/useWindowSize";
-
-const Calculator = () => {
+const Calculator = ({ keyPress }) => {
   //* Value currently displayed on screen
   const [curValue, setCurValue] = useState(0);
   //* What state the clear button should be: AC or C
@@ -20,10 +18,6 @@ const Calculator = () => {
 
   //! VARIABLES THAT AFFECT CSS:
   const [buttonWidth, setButtonWidth] = useState("10vw");
-  // TODO: use this to set the max size of the buttons - 100vw / 4 to rem
-  const { width: windowWidth, height: windowHeight } = useWindowSize();
-
-  console.log(windowWidth);
 
   const setCurValueFunction = (value) => {
     if (curValue === 0) {
@@ -85,6 +79,7 @@ const Calculator = () => {
       setActiveOp();
     }
   };
+
   return (
     <>
       <div className="slider-container">
@@ -136,6 +131,7 @@ const Calculator = () => {
             type="number"
             onClick={() => setCurValueFunction(7)}
             label="7"
+            isKeyPressed={keyPress === "7"}
           />
           <Button
             type="number"

@@ -1,8 +1,14 @@
 import React from "react";
 
-const Button = ({ type, onClick = () => null, label, active = false }) => {
+const Button = ({
+  type,
+  onClick = () => null,
+  label,
+  active = false,
+  isKeyPressed = false,
+}) => {
   let className = type;
-  if (active) {
+  if (active || isKeyPressed) {
     className = type + " active";
   }
   return (
