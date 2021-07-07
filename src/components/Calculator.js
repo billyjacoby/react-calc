@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
 import "./Calculator.css";
 
@@ -16,11 +16,33 @@ const Calculator = ({ keyPress }) => {
   //* Stores a value in order to perform same operations on subsequent equals button presses
   const [storedValue, setStoredValue] = useState();
 
+  //* Method to listen for keydown presses anywhere on page
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      console.log(e.key);
+      if (!isNaN(parseInt(e.key))) {
+        setCurValueFunction(parseInt(e.key));
+      } else if (e.key === "Backspace") {
+        console.log(curValue, "curValue");
+        let newValue = curValue?.substring(0, curValue.length - 1);
+        if (newValue === "") newValue = "0";
+        if (curValue === "0") setCurValueFunction(newValue);
+        setCurValue(newValue);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+
+    return function () {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
   //! VARIABLES THAT AFFECT CSS:
   const [buttonWidth, setButtonWidth] = useState("10vw");
 
   const setCurValueFunction = (value) => {
-    if (curValue === 0) {
+    console.log(value);
+    if (curValue === 0 || curValue === "0") {
       if (typeof value === "number") {
         setCurValue(value);
         setClearState("C");
