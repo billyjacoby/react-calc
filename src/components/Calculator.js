@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
+import Display from "./Display";
 import "./Calculator.css";
 
-const Calculator = ({ keyPress }) => {
+const Calculator = ({ buttonWidth }) => {
   //* Value currently displayed on screen
   const [curValue, setCurValue] = useState(0);
   //* What state the clear button should be: AC or C
@@ -16,18 +17,45 @@ const Calculator = ({ keyPress }) => {
   //* Stores a value in order to perform same operations on subsequent equals button presses
   const [storedValue, setStoredValue] = useState();
 
-  //* Method to listen for keydown presses anywhere on page
   useEffect(() => {
+    //* Method to listen for keydown presses anywhere on page
     const handleKeyDown = (e) => {
       console.log(e.key);
       if (!isNaN(parseInt(e.key))) {
         setCurValueFunction(parseInt(e.key));
-      } else if (e.key === "Backspace") {
-        console.log(curValue, "curValue");
-        let newValue = curValue?.substring(0, curValue.length - 1);
-        if (newValue === "") newValue = "0";
-        if (curValue === "0") setCurValueFunction(newValue);
-        setCurValue(newValue);
+      } else {
+        switch (e.key) {
+          case ".":
+            setCurValueFunction(".");
+            break;
+          case "*":
+            multiply();
+            break;
+          case "+":
+            add();
+            break;
+          case "-":
+            subtract();
+            break;
+          case "/":
+            divide();
+            break;
+          case "Enter":
+            equalPressed();
+            break;
+          case "Clear":
+            clearValue();
+            break;
+          case "Delete":
+          case "Backspace":
+            let newValue = curValue?.substring(0, curValue.length - 1);
+            if (newValue === "") newValue = "0";
+            if (curValue === "0") setCurValueFunction(newValue);
+            setCurValue(newValue);
+            break;
+          default:
+            break;
+        }
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -37,11 +65,7 @@ const Calculator = ({ keyPress }) => {
     };
   });
 
-  //! VARIABLES THAT AFFECT CSS:
-  const [buttonWidth, setButtonWidth] = useState("10vw");
-
   const setCurValueFunction = (value) => {
-    console.log(value);
     if (curValue === 0 || curValue === "0") {
       if (typeof value === "number") {
         setCurValue(value);
@@ -51,7 +75,6 @@ const Calculator = ({ keyPress }) => {
         setClearState("C");
       }
     } else {
-      // TODO: add use case for not clearing screen when there is s storedOp.
       setCurValue("" + curValue + value);
       setClearState("C");
     }
@@ -83,13 +106,6 @@ const Calculator = ({ keyPress }) => {
     setCurValue(operation(curValue));
   };
 
-  const onSliderChange = (e) => {
-    console.log(e.target.value);
-    const newWidth = e.target.value + "vw";
-
-    setButtonWidth(newWidth);
-  };
-
   const equalPressed = () => {
     if (storedValue) {
       setCurValue(storedOp(curValue, storedValue));
@@ -102,24 +118,26 @@ const Calculator = ({ keyPress }) => {
     }
   };
 
+  const multiply = () => {
+    startOperation((prevValue, value) => prevValue * value, "multiplication");
+  };
+
+  const divide = () => {
+    startOperation((prevValue, value) => prevValue / value, "division");
+  };
+
+  const add = () => {
+    startOperation((prevValue, value) => prevValue + value, "addition");
+  };
+
+  const subtract = () => {
+    startOperation((prevValue, value) => prevValue - value, "subtract");
+  };
+
   return (
     <>
-      <div className="slider-container">
-        <label>Adjust Size:</label>
-        <br />
-        <input
-          type="range"
-          min="10"
-          max="24"
-          defaultValue="10"
-          onChange={(e) => onSliderChange(e)}
-        />
-      </div>
-
       <div className="wrapper" style={{ "--buttonWidth": buttonWidth }}>
-        <div className="display">
-          <span>{curValue}</span>
-        </div>
+        <Display curValue={curValue} />
         <div className="button-row">
           <Button
             type="function"
@@ -139,12 +157,7 @@ const Calculator = ({ keyPress }) => {
           <Button
             type="operation"
             active={activeOp === "division"}
-            onClick={() =>
-              startOperation(
-                (prevValue, value) => prevValue / value,
-                "division"
-              )
-            }
+            onClick={divide}
             label="÷"
           />
         </div>
@@ -153,7 +166,6 @@ const Calculator = ({ keyPress }) => {
             type="number"
             onClick={() => setCurValueFunction(7)}
             label="7"
-            isKeyPressed={keyPress === "7"}
           />
           <Button
             type="number"
@@ -168,12 +180,7 @@ const Calculator = ({ keyPress }) => {
           <Button
             type="operation"
             active={activeOp === "multiplication"}
-            onClick={() =>
-              startOperation(
-                (prevValue, value) => prevValue * value,
-                "multiplication"
-              )
-            }
+            onClick={multiply}
             label="×"
           />
         </div>
@@ -196,12 +203,7 @@ const Calculator = ({ keyPress }) => {
           <Button
             type="operation"
             active={activeOp === "subtract"}
-            onClick={() =>
-              startOperation(
-                (prevValue, value) => prevValue - value,
-                "subtract"
-              )
-            }
+            onClick={subtract}
             label="-"
           />
         </div>
@@ -224,12 +226,7 @@ const Calculator = ({ keyPress }) => {
           <Button
             type="operation"
             active={activeOp === "addition"}
-            onClick={() =>
-              startOperation(
-                (prevValue, value) => prevValue + value,
-                "addition"
-              )
-            }
+            onClick={add}
             label="+"
           />
         </div>

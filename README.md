@@ -21,7 +21,6 @@ It was built with create-react-app and the following libraries were added for th
 - ✅ equals repeats operation
 - ✅ tested on mobile
 - ✅ make the maximum display the viewport width
-- ⏹ display shows previous value instead of 0
+- ✅ add keypress listeners for number keys
+- ✅ function keys work as expected
 - ⏹ option to change themes
-- ⏹ add keypress listeners for number keys
-- ⏹ change display to input field for easier manipulation?

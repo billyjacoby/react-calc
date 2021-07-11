@@ -1,3 +1,4 @@
+//* Ended up not needing this function. Left here just in case I change my mind...
 import { useState, useEffect } from "react";
 
 function getWindowSize() {
